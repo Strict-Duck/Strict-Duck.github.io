@@ -1,0 +1,35 @@
+body
+{
+   font-family: 'Lobster', cursive; 
+}
+
+#authPage
+{
+    height: 100vh;
+    width: 100%;
+    padding:0;
+    margin: 0 ;
+    background:  linear-gradient(to top left, #fefcea, #12913e, #32de6e, #12913e);
+}
+
+#logo
+{
+    color: #ffcc80 ;
+    opacity: 0.8;
+    width: 400px;
+}
+
+#bckg_logo
+{
+    width: 300px;
+}
+
+#navLogo
+{
+    height: 60px;
+}
+
+#profilePhoto
+{
+    height: 50px;
+}
