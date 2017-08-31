@@ -1,13 +1,12 @@
   (function(){
 
-  
-    // Initialize Firebase
+  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCuc5xxdS2c51twDF5t5DTWuR0jHUumcrE",
     authDomain: "strict-duck.firebaseapp.com",
     databaseURL: "https://strict-duck.firebaseio.com",
     projectId: "strict-duck",
-    storageBucket: "",
+    storageBucket: "strict-duck.appspot.com",
     messagingSenderId: "231062651686"
   };
   firebase.initializeApp(config);
