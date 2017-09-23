@@ -34,6 +34,7 @@
     
     const loader = document.getElementById('loader');
     var profilePhoto = document.getElementById('profilePhoto');
+    var profile = document.getElementById('profile');
     var reg = false;
       
     //Add login Event
@@ -78,7 +79,7 @@
             name: txtName.value,
             email: txtEmail.value,
             password: txtPass.value,
-            profilePhoto: 'https://firebasestorage.googleapis.com/v0/b/kono-f4f2d.appspot.com/o/user.png?alt=media&token=0d87b984-8a55-4bd9-8b25-dd95f4acbf44'
+            profilePhoto: 'https://firebasestorage.googleapis.com/v0/b/strict-duck.appspot.com/o/user.png?alt=media&token=91caeeb2-e57c-4807-ad32-080a547baa7a'
             });
             };
               
@@ -90,6 +91,7 @@
             mainPage.classList.remove('hide');
             
             firebase.database().ref('users/' + firebaseUser.uid ).once('value').then(function(snapshot){
+            profile.innerHTML="<a><img id='profilePhoto'>" + snapshot.val().name + "</a>";
             profilePhoto.src = snapshot.val().profilePhoto    
             });
              }
