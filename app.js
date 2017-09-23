@@ -91,8 +91,9 @@
             mainPage.classList.remove('hide');
             
             firebase.database().ref('users/' + firebaseUser.uid ).once('value').then(function(snapshot){
-            profile.innerHTML="<a><img id='profilePhoto'>" + snapshot.val().name + "</a>";
-            profilePhoto.src = snapshot.val().profilePhoto    
+            profile.innerHTML="<a><img id='profilePhoto'>" + snapshot.val().name + "</a>",
+            profilePhoto.src = snapshot.val().profilePhoto
+                
             });
              }
           
