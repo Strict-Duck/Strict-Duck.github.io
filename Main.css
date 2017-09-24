@@ -29,7 +29,22 @@ body
     height: 60px;
 }
 
+
+.profileLinks
+{
+    height: 64px;
+}
+
+#profile
+{
+    vertical-align: top                                          
+}
+
 #profilePhoto
 {
+    margin-top: 1px;
     height: 60px;
+    border: solid 4px #fff;
+    border-radius: 50%;
+    margin-right: 5px;
 }
