@@ -92,7 +92,7 @@
             
             firebase.database().ref('users/' + firebaseUser.uid ).once('value').then(function(snapshot){
             profilePhoto.src = snapshot.val().profilePhoto;
-            profile.innerHTML="<a><img id='profilePhoto'>" + snapshot.val().name + "</a>";
+            profile.innerHTML= snapshot.val().name;
                         
             });
              }
