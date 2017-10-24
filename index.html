@@ -1,81 +1,139 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html ng-app="NewsApp">
 <head>
-    <meta charset="utf-8">
-    <title>Strict-Duck</title>
-    <link rel="shortcut icon" type="image/x-icon" href="logo.png">
-    <link rel="stylesheet" href="Main.css">
-    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="materialize/js/materialize.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="materialize/css/materialize.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <link href="animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+    <script src="materialize/js/materialize.js"></script>
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script> <!-- Angular -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script><!-- Firebase -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+	<title>NIS PAPER</title>
 </head>
-<body>
-    <div id="authPage">
-    <div id="logo" class="animated bounceIn">
-        <img src="logo.png" id="bckg_logo">
-        <h2>STRICT DUCK</h2>
-    </div>
-      <div class="row">
-        <div class="col s12 m8 l6 offset-m2 offset-l3">
-            <div class="card animated bounceIn" id="auth">
-                <div class="card-content ">
-                <span id="loginLabel" class="card-title cyan-text">Login</span>
-                <span id="registerLabel" class="card-title cyan-text hide">Registration</span>
-                <div id="divName" class="input-field col s12 hide">
-                    <input type="text" id="txtName">
-                    <label for="txtName">Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="text" id="txtEmail">
-                    <label for="txtEmail">Email</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="password" id="txtPass">
-                    <label for="txtPass">Password</label>
-                </div>
-                <button id="btnLogin" class="waves-effect orange lighten-3 btn">Login</button>
-                <button id="btnSignUp" class="waves-effect orange lighten-3 btn hide">SignUp</button>
-                or
-                <button id="btnReg" class="waves-effect  cyan lighten-2 btn">Registration</button>
-                <button id="btnLog" class="waves-effect  cyan lighten-2 btn hide">Login</button>
-                <div class="col s6 offset-s3 hide" id="loader">
-                    <div class="progress">
-                          <div class="indeterminate"></div>
+<body ng-controller="NewsController">
+	<a href="#cd-nav" class="cd-nav-trigger">
+		Menu<span></span>
+	</a> <!-- .cd-nav-trigger -->
+	
+	<main>
+		<section class="cd-section index cd-selected">
+			<header>
+				<div class="cd-title">
+					<h2>NIS PAPER</h2>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve" width="64" height="64"><g class="nc-icon-wrapper" fill="#ffffff"><line data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="10" y1="13" x2="14" y2="13" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="13" x2="24" y2="13" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="43" y1="13" x2="54" y2="13" stroke-linejoin="miter"></line> <line fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="2" y1="20" x2="62" y2="20" stroke-linejoin="miter"></line> <rect x="2" y="6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="60" height="52" stroke-linejoin="miter"></rect></g></svg>
+				</div> 
+			</header>
+
+			<div class="cd-content">
+                
+                
+              <div class="row">
+                <div class="col s12 m10 l8 offset-m1 offset-l2">
+                  <div class="card deep-purple lighten-2">
+                    <div class="card-content white-text">
+                      <span class="card-title">News feed</span>
                     </div>
+                  </div>
+                  <div class="card deep-purple lighten-2 white-text" ng-repeat="m in news">
+                    <div class="card-image">
+                      <img src={{m.picture||"images/6a00d83420c49153ef01b7c781a9b2970b.jpg"}}>
+                      <span class="card-title">{{m.header}}</span>
+                    </div>
+                    <div class="card-content">
+                      <p>{{m.text}}</p>
+                      <br>
+                      <p>{{m.date | date:'medium'}}</p>
+                      <br>
+                      <p>{{m.redactor}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href=""><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16"><g class="nc-icon-wrapper" fill="#dd8284"><path fill="#dd8284" d="M14.682,2.318c-1.757-1.757-4.607-1.757-6.364,0C8.197,2.439,8.104,2.577,8,2.707 C7.896,2.577,7.803,2.439,7.682,2.318c-1.757-1.757-4.607-1.757-6.364,0c-1.757,1.757-1.757,4.607,0,6.364L8,15l6.682-6.318 C16.439,6.925,16.439,4.075,14.682,2.318z"></path></g></svg></a>{{m.likes}} 
+                    </div>
+                  </div>
                 </div>
-                </div>
-                </div> 
-            </div>
-        </div>
-            
-   
-    
-    </div>
-    <div id="mainPage" class="hide">
-    <nav>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-    <div class="green darken-2 nav-wrapper">
-        <img src="logo.png" id="navLogo" class="brand-logo">
-        <a class="brand-logo center">Strict Duck</a>
-        <ul id="nav" class="right hide-on-med-and-down">
-            <li><a href="/desks">Desks</a></li>
-            <li><a href="/profile" class="profileLinks"><img class="responsive-img" id="profilePhoto"><sd id="profile"></sd></a></li>
-            <button id="btnLogOut" class="waves-effect orange lighten-3 btn">Logout</button>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="/desks">Desks</a></li>
-            <li><a href="/profile" class="profileLinks"><img class="responsive-img" id="profilePhoto"><sd id="profile"></sd></a></li>
-            <button id="btnLogOut" class="waves-effect orange lighten-3 btn">Logout</button>
-        </ul>
-    </div>
-  </nav>
-    
-    </div>
-        <script src="app.js"></script>
+              </div>
+                  
+				
+			</div>
+		</section> <!-- .cd-section -->
+	</main>
+	
+	<nav class="cd-nav-container" id="cd-nav">
+		<header>
+			<h3>Navigation</h3>
+			<a href="#0" class="cd-close-nav">Close</a>
+		</header>
+
+		<ul class="cd-nav">
+			<li class="cd-selected" data-menu="index">
+				<a href="index.html">
+					<span>
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve" width="64" height="64"><g class="nc-icon-wrapper" fill="#9e85d0"><line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="10" y1="13" x2="14" y2="13" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="13" x2="24" y2="13" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="43" y1="13" x2="54" y2="13" stroke-linejoin="miter"></line> <line fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="2" y1="20" x2="62" y2="20" stroke-linejoin="miter"></line> <rect x="2" y="6" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="60" height="52" stroke-linejoin="miter"></rect></g></svg>
+					</span>
+
+					<em>News feed</em>
+				</a>
+			</li>
+
+			<li data-menu="issues">
+				<a href="issues.html">
+					<span>
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve" width="64" height="64"><g class="nc-icon-wrapper" fill="#9e85d0"><polyline data-cap="butt" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" points="40,2 40,18 56,18 " stroke-linejoin="miter" stroke-linecap="butt"></polyline> <polygon fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="40,2 8,2 8,62 56,62 56,18 " stroke-linejoin="miter"></polygon> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="48" x2="44" y2="48" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="38" x2="44" y2="38" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="28" x2="44" y2="28" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="18" x2="28" y2="18" stroke-linejoin="miter"></line></g></svg>
+					</span>
+
+					<em>Issues</em>
+				</a>
+			</li>
+
+			<li data-menu="calendar">
+				<a href="calendar.html">
+					<span>
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve" width="64" height="64"><g class="nc-icon-wrapper" fill="#9e85d0"><line fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="62" y1="22" x2="2" y2="22" stroke-linejoin="miter"></line> <polyline fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="50,8 62,8 62,62 2,62 2,8 14,8 " stroke-linejoin="miter"></polyline> <line fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="8" x2="44" y2="8" stroke-linejoin="miter"></line> <rect data-color="color-2" x="14" y="2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="6" height="12" stroke-linejoin="miter"></rect> <rect data-color="color-2" x="44" y="2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="6" height="12" stroke-linejoin="miter"></rect></g></svg>
+					</span>
+
+					<em>Calendar</em>
+				</a>
+			</li>
+
+			<li data-menu="gallery">
+				<a href="gallery.html">
+					<span>
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve" width="64" height="64"><g class="nc-icon-wrapper" fill="#9e85d0"><polyline data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" points="8,44 20,34 30,40 44,28 56,40 " stroke-linejoin="miter" stroke-linecap="butt"></polyline> <circle data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" cx="29" cy="24" r="5" stroke-linejoin="miter"></circle> <rect x="2" y="6" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="60" height="52" stroke-linejoin="miter"></rect> <rect x="8" y="12" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="48" height="40" stroke-linejoin="miter"></rect></g></svg>
+					</span>
+
+					<em>Photo gallery</em>
+				</a>
+			</li>
+
+			<li data-menu="redactors">
+				<a href="redactors.html">
+					<span>
+						<svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64"> <g transform="translate(0, 0)"> <polyline data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" points="24,40 28,48 36,48 40,40 " stroke-linejoin="square" stroke-linecap="butt"></polyline> <line data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" x1="24" y1="62" x2="28" y2="48" stroke-linejoin="square" stroke-linecap="butt"></line> <line data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" x1="36" y1="48" x2="40" y2="62" stroke-linejoin="square" stroke-linecap="butt"></line> <path data-cap="butt" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" d="M39.7,40H40c12.2,0,22,9.8,22,22v0H2 v0c0-12.2,9.8-22,22-22h0.3" stroke-linejoin="square" stroke-linecap="butt"></path> <path data-cap="butt" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" d="M47.9,27.5C47.2,35.7,40.3,42,32,42 h0c-8.3,0-15.2-6.4-15.9-14.5" stroke-linejoin="square" stroke-linecap="butt"></path> <path fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M16,18c0-8.8,7.2-16,16-16 h0c8.8,0,16,7.2,16,16" stroke-linejoin="square"></path> <path data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M12.1,18 c0,0.3-0.1,0.7-0.1,1c0,6.1,4.9,11,11,11c3.7,0,7-1.9,9-4.7c2,2.8,5.3,4.7,9,4.7c6.1,0,11-4.9,11-11c0-0.3,0-0.7-0.1-1H12.1z" stroke-linejoin="square"></path> </g> </svg>
+					</span>
+
+					<em>Redactors</em>
+				</a>
+			</li>
+			<li data-menu="contact">
+				<a href="contact.html">
+					<span>
+						<svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64"><g transform="translate(0, 0)"> <polyline data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" points="10,18 32,36 54,18 " stroke-linejoin="square" stroke-linecap="butt"></polyline> <rect x="2" y="10" fill="none" stroke="#9e85d0" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="60" height="44" stroke-linejoin="square"></rect> <line data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" x1="10" y1="44" x2="18" y2="34" stroke-linejoin="square" stroke-linecap="butt"></line> <line data-cap="butt" data-color="color-2" fill="none" stroke="#9e85d0" stroke-width="2" stroke-miterlimit="10" x1="54" y1="44" x2="46" y2="34" stroke-linejoin="square" stroke-linecap="butt"></line> </g></svg>
+					</span>
+
+					<em>Contact us</em>
+				</a>
+			</li>
+		</ul> <!-- .cd-3d-nav -->
+	</nav>
+
+	<div class="cd-overlay"><!-- shadow layer visible when navigation is visible --></div>
+	
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
 </body>
-
-
 </html>
